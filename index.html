@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Frontend Mentor | Age calculator app</title>
+  </head>
+  <body>
+    <main>
+      <form action="" id="form" novalidate>
+        <div class="input_wrapper">
+          <div class="day_container">
+            <label for="day_input">DAY</label>
+            <input
+              type="number"
+              name="day input"
+              id="day_input"
+              placeholder="DD"
+            />
+          </div>
+          <div class="month_container">
+            <label for="month_input">MONTH</label>
+            <input
+              type="number"
+              name="month input"
+              id="month_input"
+              placeholder="MM"
+            />
+          </div>
+          <div class="year_container">
+            <label for="year_input">YEAR</label>
+            <input
+              type="number"
+              name="year input"
+              id="year_input"
+              placeholder="YYYY"
+            />
+          </div>
+        </div>
+        <div class="button_section">
+          <div class="divider"></div>
+          <button type="submit" class="submit_btn">
+            <img
+              src="assets/images/icon-arrow.svg"
+              width="35"
+              height="30"
+              alt="submit button"
+            />
+          </button>
+        </div>
+      </form>
+      <div class="calculator_result">
+        <p class="result_text">
+          <span class="year_result age_result">--</span> years
+        </p>
+        <p class="result_text">
+          <span class="month_result age_result">--</span> Months
+        </p>
+        <p class="result_text">
+          <span class="day_result age_result">--</span> Days
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
