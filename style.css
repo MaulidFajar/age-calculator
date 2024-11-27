@@ -139,3 +139,43 @@ label {
     top: 2px;
   }
 }
+
+@media screen and (min-width: 768px) {
+  body {
+    height: 100vh;
+    align-items: center;
+    margin-top: 0;
+  }
+
+  main {
+    width: 600px;
+    padding: 2rem 3rem;
+  }
+
+  .input_wrapper {
+    width: 75%;
+    gap: 16px;
+  }
+
+  .button_section {
+    margin: 2rem 0;
+  }
+
+  .submit_btn {
+    left: 86%;
+    right: 0;
+    transform: translateX(0%);
+    padding: 1rem;
+  }
+
+  .submit_btn img {
+    width: 35px;
+    height: 30px;
+  }
+
+  .result_text,
+  .age_result {
+    font-size: 70px;
+    line-height: 85px;
+  }
+}
