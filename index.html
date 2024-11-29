@@ -20,36 +20,45 @@
       <form action="" id="form" novalidate>
         <div class="input_wrapper">
           <div class="day_container">
-            <label for="day_input">DAY</label>
+            <label for="day" class="day_label">DAY</label>
             <input
               type="number"
               name="day input"
-              id="day_input"
+              id="day"
+              class="day_input"
               placeholder="DD"
+              required
             />
+            <span class="error_msg day_error hidden"></span>
           </div>
           <div class="month_container">
-            <label for="month_input">MONTH</label>
+            <label for="month" class="month_label">MONTH</label>
             <input
               type="number"
               name="month input"
-              id="month_input"
+              id="month"
+              class="month_input"
               placeholder="MM"
+              required
             />
+            <span class="error_msg month_error hidden"></span>
           </div>
           <div class="year_container">
-            <label for="year_input">YEAR</label>
+            <label for="year" class="year_label">YEAR</label>
             <input
               type="number"
               name="year input"
-              id="year_input"
+              id="year"
+              class="year_input"
               placeholder="YYYY"
+              required
             />
+            <span class="error_msg year_error hidden"></span>
           </div>
         </div>
         <div class="button_section">
           <div class="divider"></div>
-          <button type="submit" class="submit_btn">
+          <button class="submit_btn">
             <img
               src="assets/images/icon-arrow.svg"
               width="35"
@@ -71,5 +80,7 @@
         </p>
       </div>
     </main>
+
+    <script src="main.js"></script>
   </body>
 </html>

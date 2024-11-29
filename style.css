@@ -93,6 +93,12 @@ main {
   animation-timing-function: ease-in-out;
 }
 
+.day_container,
+.month_container,
+.year_container {
+  position: relative;
+}
+
 input {
   width: 100%;
   padding: 10px 15px;
@@ -119,6 +125,25 @@ label {
 
 .age_result {
   color: var(--purple);
+}
+
+.error_msg {
+  font-size: 10px;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+.error_state_msg {
+  color: var(--light_red);
+}
+
+.error_state_label {
+  border: 1px solid var(--light_red);
+}
+
+.hidden {
+  display: none;
 }
 
 @keyframes slideUpDown {
