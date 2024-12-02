@@ -128,9 +128,9 @@ label {
 }
 
 .error_msg {
-  font-size: 10px;
+  font-size: 8px;
   position: absolute;
-  bottom: -20px;
+  bottom: -15px;
   left: 0;
 }
 
@@ -140,10 +140,6 @@ label {
 
 .error_state_label {
   border: 1px solid var(--light_red);
-}
-
-.hidden {
-  display: none;
 }
 
 @keyframes slideUpDown {
@@ -202,5 +198,10 @@ label {
   .age_result {
     font-size: 70px;
     line-height: 85px;
+  }
+
+  .error_msg {
+    font-size: 10px;
+    bottom: -17px;
   }
 }

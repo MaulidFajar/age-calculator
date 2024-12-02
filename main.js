@@ -18,99 +18,118 @@ const yearLabel = document.querySelector(".year_label");
 
 const date = new Date();
 
-let day;
-let month;
-let year;
+let dayValue;
+let monthValue;
+let yearValue;
 
 const calculateAge = () => {
   const dateDay = date.getDate();
   const dateMonth = date.getMonth() + 1;
   const dateyear = date.getFullYear();
 
-  let dayValue = dateDay - day;
-  let monthValue = dateMonth - month;
-  let yearValue = dateyear - year;
+  let calculateDay = dateDay - dayValue;
+  let calculateMonth = dateMonth - monthValue;
+  let calculateYear = dateyear - yearValue;
 
   const prevMonth = new Date(date.getFullYear(), date.getMonth(), 0);
 
   dayResult.textContent =
-    dayValue < 0 ? monthValue-- && dayValue + prevMonth.getDate() : dayValue;
+    calculateDay < 0
+      ? calculateMonth-- && calculateDay + prevMonth.getDate()
+      : calculateDay;
   monthResult.textContent =
-    monthValue < 0 ? yearValue-- && monthValue + 12 : monthValue;
-  yearResult.textContent = yearValue;
+    calculateMonth < 0
+      ? calculateYear-- && calculateMonth + 12
+      : calculateMonth;
+  yearResult.textContent = calculateYear;
+};
+
+const showError = (element, label, errorClass, errorMsg) => {
+  errorClass.textContent = errorMsg;
+  element.classList.add("error_state_label");
+  label.classList.add("error_state_msg");
+  errorClass.classList.add("error_state_msg");
+};
+
+const hideError = (element, label, errorClass) => {
+  errorClass.textContent = "";
+  element.classList.remove("error_state_label");
+  label.classList.remove("error_state_msg");
+};
+
+const validate = (inputValue, type, input, label, error, max, min) => {
+  if (!inputValue) {
+    showError(input, label, error, "this field is required");
+  } else if (max) {
+    showError(input, label, error, "Must be in the past");
+  } else if (min) {
+    showError(input, label, error, "Must be a valid date");
+  } else {
+    if (type === "day") {
+      dayValue = inputValue;
+    } else if (type === "month") {
+      monthValue = inputValue;
+    } else {
+      yearValue = inputValue;
+    }
+    hideError(input, label, error);
+  }
 };
 
 dayInput.addEventListener("input", () => {
-  if (!dayInput.value) {
-    dayError.textContent = "this field is required";
-    dayInput.classList.add("error_state_label");
-    dayLabel.classList.add("error_state_msg");
-  } else {
-    dayError.textContent = "";
-    dayInput.classList.remove("error_state_label");
-    dayLabel.classList.remove("error_state_msg");
-  }
+  const inputValue = dayInput.value;
 
-  if (dayInput.value > 31) {
-    dayError.classList.remove("hidden");
-    dayInput.classList.add("error_state_label");
-    dayError.classList.add("error_state_msg");
-    dayLabel.classList.add("error_state_msg");
-    dayError.textContent = "Must be in the past";
-  } else {
-    day = dayInput.value;
-  }
+  validate(
+    inputValue,
+    "day",
+    dayInput,
+    dayLabel,
+    dayError,
+    inputValue > 31,
+    inputValue <= 0
+  );
 });
 
 monthInput.addEventListener("input", () => {
-  if (!monthInput.value) {
-    monthError.textContent = "this field is required";
-    monthInput.classList.add("error_state_label");
-    monthLabel.classList.add("error_state_msg");
-  } else {
-    monthError.textContent = "";
-    monthInput.classList.remove("error_state_label");
-    monthLabel.classList.remove("error_state_msg");
-  }
+  const inputValue = monthInput.value;
 
-  if (monthInput.value > 12) {
-    monthError.classList.remove("hidden");
-    monthInput.classList.add("error_state_label");
-    monthError.classList.add("error_state_msg");
-    monthLabel.classList.add("error_state_msg");
-    monthError.textContent = "Must be in the past";
-  } else {
-    month = monthInput.value;
-  }
+  validate(
+    inputValue,
+    "month",
+    monthInput,
+    monthLabel,
+    monthError,
+    inputValue > 12,
+    inputValue === "00"
+  );
 });
 
 yearInput.addEventListener("input", () => {
-  if (!yearInput.value) {
-    yearError.textContent = "this field is required";
-    yearInput.classList.add("error_state_label");
-    yearLabel.classList.add("error_state_msg");
-  } else {
-    yearError.textContent = "";
-    yearInput.classList.remove("error_state_label");
-    yearLabel.classList.remove("error_state_msg");
-  }
+  const inputValue = yearInput.value;
 
-  if (yearInput.value > date.getFullYear()) {
-    yearError.classList.remove("hidden");
-    yearInput.classList.add("error_state_label");
-    yearError.classList.add("error_state_msg");
-    yearLabel.classList.add("error_state_msg");
-    yearError.textContent = "Must be in the past";
-  } else {
-    year = yearInput.value;
-  }
+  validate(
+    inputValue,
+    "year",
+    yearInput,
+    yearLabel,
+    yearError,
+    inputValue > date.getFullYear()
+  );
 });
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (!year || !month || !day) {
-    alert("wikwok");
-  } else {
+
+  if (!yearValue) {
+    showError(yearInput, yearLabel, yearError, "this field is required");
+  }
+  if (!monthValue) {
+    showError(monthInput, monthLabel, monthError, "this field is required");
+  }
+  if (!dayValue) {
+    showError(dayInput, dayLabel, dayError, "this field is required");
+  }
+  if (yearValue && monthValue && dayValue) {
     calculateAge();
   }
 });
